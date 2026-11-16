@@ -142,7 +142,7 @@ h1,h2,h3{margin:0}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
 .sec-head h2{font-size:clamp(40px,4.5vw,64px)}
 .score{text-align:right}
-.score .h{font-size:80px;line-height:.85;color:var(--bor)}
+.score .h{font-size:80px;line-height:1;color:var(--bor);margin:0}.score .m{margin-top:14px}
 
 /* feature (Lívia) */
 .feat{background:var(--g);border-radius:24px;padding:clamp(28px,4vw,50px);box-shadow:var(--up)}
