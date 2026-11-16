@@ -1,0 +1,5 @@
+# Nick Gomes — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.nickgomes.com/sitemap.xml
