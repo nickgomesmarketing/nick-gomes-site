@@ -338,135 +338,55 @@ h1,h2,h3{margin:0}
 .step p a.red,.step p a.red b{color:var(--bor)}
 
 /* =========================================================
-   TEMA VIDRO (glassmorfismo) — estilo principal do site
-   Mesma estrutura, textos e animações; só a pele muda.
+   TEMA VIDRO CLARO — fundo claro, caixas de vidro com os
+   contornos do neumorfismo, destaques em bordô (#7A1F33).
+   Mesma estrutura, textos e animações.
    ========================================================= */
 :root{
-  --g:rgba(255,255,255,.07);--g2:rgba(255,255,255,.12);
-  --k:#F3F5F7;--t:#C5CED6;--t2:#E1E6EA;--cz:#A4AFB9;--line:rgba(255,255,255,.14);
-  --bor:#DE6C88;--bol:#DE6C88;--brand:#7A1F33;
-  --ck:repeating-conic-gradient(#0E1013 0 25%,#F7F9FA 0 50%);
-  --glass:rgba(255,255,255,.075);--glass2:rgba(255,255,255,.11);
-  --gb:1px solid rgba(255,255,255,.16);
-  --blur:blur(18px) saturate(140%);
-  --up:0 24px 60px rgba(6,8,14,.38),inset 0 1px 0 rgba(255,255,255,.16);
-  --card:0 16px 40px rgba(6,8,14,.30),inset 0 1px 0 rgba(255,255,255,.14);
-  --press:inset 0 2px 10px rgba(0,0,0,.28),inset 0 0 0 1px rgba(255,255,255,.10);
-  --btn:0 14px 34px rgba(122,31,51,.45),inset 0 1px 0 rgba(255,255,255,.22);
-  --bbg:linear-gradient(135deg,rgba(156,42,68,.92),rgba(112,27,47,.92));
+  --glass:rgba(255,255,255,.46);
+  --rim:1px solid rgba(255,255,255,.8);
+  --blur:blur(18px) saturate(160%);
+  --up:18px 20px 44px rgba(40,55,70,.16),-12px -12px 30px rgba(255,255,255,.9),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.07);
+  --card:12px 14px 30px rgba(40,55,70,.14),-10px -10px 24px rgba(255,255,255,.85),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.06);
 }
-html{background:#141518;color-scheme:dark}
-body{background:transparent;color:var(--k)}
-/* fundo: azul acinzentado → bordô, com o xadrez da marca bem leve */
-body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+body{background:transparent}
+html{background:#EEF1F3}
+/* fundo claro, sem xadrez: só manchas suaves para o vidro ter o que desfocar */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(60vmax 50vmax at 12% 6%,rgba(255,255,255,.13),transparent 60%),
-    radial-gradient(50vmax 42vmax at 95% 35%,rgba(255,255,255,.07),transparent 62%),
-    radial-gradient(70vmax 55vmax at 60% 108%,rgba(255,255,255,.06),transparent 60%),
-    linear-gradient(165deg,#24262A 0%,#141518 45%,#0E1013 75%,#18191C 100%)}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:repeating-conic-gradient(rgba(255,255,255,.035) 0 25%,transparent 0 50%);background-size:188px 188px;
-  -webkit-mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.55));mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.55))}
-
-/* superfícies de vidro */
-.bar,.panel,.card,.site,.rv,.feat,.photo,.cc.em,.badge,.cta ol,.plate,.ghost,.burger,.cc.em .ic,.photo .in{
-  background:var(--glass);border:var(--gb);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
-.bar{background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.05));box-shadow:var(--up)}
-.panel,.feat,.photo{box-shadow:var(--up)}
-.card,.rv,.badge{box-shadow:var(--card)}
-.site{box-shadow:var(--card)}
-.photo .in,.plate,.cc.em .ic{background:rgba(10,14,22,.22);box-shadow:var(--press)}
-.ghost{color:var(--k);background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.05));box-shadow:var(--card)}
-.ghost:hover{background:rgba(255,255,255,.16)}
-.burger{background:rgba(255,255,255,.10);box-shadow:var(--card)}
-
-/* faixa do topo: vidro fosco escuro (o conteúdo passa borrado por trás) */
-.top{background:rgba(20,21,24,.55);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%)}
-.menu a:hover,.menu a[aria-current=page]{color:#fff;border-bottom-color:#fff}
-
-/* botões bordô em vidro */
-.btn,.menu .mcta a{background:var(--bbg);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
-.btn{box-shadow:var(--btn)}
-.bar .btn{box-shadow:0 8px 20px rgba(122,31,51,.35)}
-@keyframes pulse{0%,100%{box-shadow:var(--btn),0 0 0 0 rgba(222,108,136,.5)}60%{box-shadow:var(--btn),0 0 0 16px rgba(222,108,136,0)}}
-
-/* símbolo e quadrado-guia mantêm o bordô da marca */
-.sym i{background:var(--brand)}
-#guide{background:var(--brand);border:0;box-shadow:none}
-
-/* hero */
+    radial-gradient(55vmax 45vmax at 8% 4%,rgba(90,113,134,.20),transparent 60%),
+    radial-gradient(45vmax 40vmax at 96% 30%,rgba(255,255,255,.95),transparent 60%),
+    radial-gradient(50vmax 42vmax at 85% 100%,rgba(122,31,51,.08),transparent 60%),
+    radial-gradient(45vmax 40vmax at 0% 85%,rgba(90,113,134,.12),transparent 60%),
+    #EEF1F3}
 .hero::before{display:none}
-.hero::after{background:radial-gradient(ellipse,rgba(255,255,255,.08),transparent 65%)}
 
-/* linha do tempo */
-.line{background:rgba(255,255,255,.12)}
-.line b{background:linear-gradient(var(--bor),rgba(222,108,136,.15))}
-.js .line b{background:var(--bor)}
+/* superfícies de vidro com contorno */
+.bar,.panel,.card,.site,.rv,.feat,.photo,.cc.em,.badge,.ghost,.burger,.tab,.tp{
+  background:var(--glass);border:var(--rim);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.bar{background:rgba(255,255,255,.55);box-shadow:var(--up)}
+.panel,.feat,.photo,.cc.em{box-shadow:var(--up)}
+.card,.rv,.badge,.site,.ghost,.burger{box-shadow:var(--card)}
+.top{background:rgba(238,241,243,.72);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%)}
 
-/* abas */
-.tab{background:transparent;border-bottom-color:rgba(255,255,255,.16)}
-.tab[aria-selected=true]{background:rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.18);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
-.plate::before{opacity:.08}
+/* abas dos pilares: três botões de vidro; a ativa em relevo com base bordô */
+.tabs{gap:clamp(8px,1.2vw,16px)}
+.tab{border-radius:22px;box-shadow:var(--card);padding:20px 10px;transition:transform .15s,box-shadow .15s}
+.tab:hover{transform:translateY(-2px)}
+.tab[aria-selected=true]{background:rgba(255,255,255,.72);box-shadow:var(--up),inset 0 -5px 0 var(--bor)}
 
-/* cartões */
-.c1{color:rgba(255,255,255,.32)}.c2{color:#9DB3C7}
-.card.hl{outline:1.5px solid var(--bor)}
-.live{color:#AFC2D3}
-.live::before{background:#9DB3C7;box-shadow:0 0 0 4px rgba(157,179,199,.2)}
-.photo .ph{background:rgba(255,255,255,.08)}
-
-/* contato */
-.cc.wa{background:linear-gradient(135deg,rgba(156,42,68,.82),rgba(98,24,42,.82));border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:0 22px 50px rgba(122,31,51,.40),inset 0 1px 0 rgba(255,255,255,.2)}
-.cc.em{box-shadow:var(--up)}
-
-/* chamada final: vidro escuro com brilho bordô */
-.cta{background:linear-gradient(135deg,rgba(14,17,24,.62),rgba(58,22,36,.55));border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);box-shadow:0 30px 70px rgba(4,6,10,.45),inset 0 1px 0 rgba(255,255,255,.12)}
-.cta ol{color:var(--k);box-shadow:0 20px 44px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.16)}
-
-/* rodapé */
-.foot a:hover{color:#fff}
+/* conteúdo do pilar num cartão de vidro */
+.tp{margin-top:clamp(20px,2.4vw,30px);padding:clamp(26px,3.6vw,48px);border-radius:28px;background:linear-gradient(165deg,rgba(255,255,255,.62),rgba(255,255,255,.32));box-shadow:var(--up)}
 
 @media (max-width:900px){
-  .menu{background:rgba(20,21,24,.88);border:var(--gb);-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);box-shadow:0 24px 50px rgba(0,0,0,.45)}
-  .menu a{border-bottom-color:var(--line)}
-  .menu a[aria-current=page]{color:var(--bor)}
+  .menu{background:rgba(247,249,250,.9);border:var(--rim);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%)}
 }
-@media (max-width:760px){
-  :root{--up:0 16px 36px rgba(6,8,14,.34),inset 0 1px 0 rgba(255,255,255,.15);--card:0 12px 28px rgba(6,8,14,.28),inset 0 1px 0 rgba(255,255,255,.13)}
-  .panel{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
-  body::after{background-size:120px 120px}
-}
-/* bordô claro para textos pequenos (contraste mínimo 4,5:1 no vidro) */
-.tab[aria-selected=true],.site .go,.step p a.red,.step p a.red b{color:#F29AAE}
-
-/* ---------- contornos do neumorfismo sobre o vidro ----------
-   borda clara mais marcada + luz no canto de cima/esquerda + sombra
-   embaixo/direita: as caixas "saltam" do fundo como no neumorfismo */
-:root{
-  --rim:1px solid rgba(255,255,255,.22);
-  --up:14px 18px 40px rgba(4,6,12,.45),-8px -8px 24px rgba(255,255,255,.035),inset 1px 1px 0 rgba(255,255,255,.18),inset -1px -1px 0 rgba(0,0,0,.18);
-  --card:10px 14px 30px rgba(4,6,12,.40),-6px -6px 18px rgba(255,255,255,.03),inset 1px 1px 0 rgba(255,255,255,.16),inset -1px -1px 0 rgba(0,0,0,.16);
-  --press:inset 4px 5px 12px rgba(0,0,0,.35),inset -3px -3px 10px rgba(255,255,255,.05),inset 0 0 0 1px rgba(255,255,255,.10);
-}
-.bar,.panel,.card,.site,.rv,.feat,.photo,.cc.em,.badge,.cta ol,.ghost,.burger{border:var(--rim)}
-.ghost,.burger{box-shadow:var(--card)}
-.btn{border-color:rgba(255,255,255,.22)}
-
-/* abas dos pilares: três botões de vidro com contorno; a ativa fica em relevo com a base bordô */
-.tabs{gap:clamp(8px,1.2vw,16px)}
-.tab{border:var(--rim);border-radius:22px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--card);padding:20px 10px;transition:transform .15s,box-shadow .15s}
-.tab:hover{transform:translateY(-2px)}
-.tab[aria-selected=true]{background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.06));box-shadow:var(--up),inset 0 -5px 0 var(--brand);border-bottom:var(--rim)}
-
-/* conteúdo do pilar dentro de um cartão de vidro (azul → bordô) */
-.tp{margin-top:clamp(20px,2.4vw,30px);padding:clamp(26px,3.6vw,48px);border-radius:28px;border:var(--rim);background:linear-gradient(165deg,rgba(90,113,134,.28) 0%,rgba(255,255,255,.05) 45%,rgba(122,31,51,.38) 100%);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--up)}
-.tp li{color:var(--k)}
-
 @media (max-width:760px){
   :root{
-    --up:10px 14px 30px rgba(4,6,12,.42),-6px -6px 18px rgba(255,255,255,.03),inset 1px 1px 0 rgba(255,255,255,.18),inset -1px -1px 0 rgba(0,0,0,.18);
-    --card:8px 10px 22px rgba(4,6,12,.38),-5px -5px 14px rgba(255,255,255,.03),inset 1px 1px 0 rgba(255,255,255,.16),inset -1px -1px 0 rgba(0,0,0,.16);
+    --up:10px 12px 28px rgba(40,55,70,.15),-8px -8px 20px rgba(255,255,255,.85),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.07);
+    --card:8px 10px 20px rgba(40,55,70,.13),-6px -6px 16px rgba(255,255,255,.8),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.06);
   }
+  .panel{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
   .tabs{overflow:visible;gap:10px}
   .tab{border-radius:20px;padding:18px 4px 16px;font-size:11.5px;letter-spacing:.08em}
   .tp{padding:26px 22px;border-radius:26px}
