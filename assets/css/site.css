@@ -355,16 +355,15 @@ h1,h2,h3{margin:0}
   --btn:0 14px 34px rgba(122,31,51,.45),inset 0 1px 0 rgba(255,255,255,.22);
   --bbg:linear-gradient(135deg,rgba(156,42,68,.92),rgba(112,27,47,.92));
 }
-html{background:#1E2532;color-scheme:dark}
+html{background:#141518;color-scheme:dark}
 body{background:transparent;color:var(--k)}
 /* fundo: azul acinzentado → bordô, com o xadrez da marca bem leve */
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-    radial-gradient(60vmax 50vmax at 12% 8%,rgba(90,113,134,.55),transparent 60%),
-    radial-gradient(55vmax 45vmax at 92% 30%,rgba(62,81,99,.55),transparent 62%),
-    radial-gradient(70vmax 55vmax at 70% 105%,rgba(122,31,51,.62),transparent 60%),
-    radial-gradient(45vmax 40vmax at 5% 95%,rgba(122,31,51,.35),transparent 60%),
-    linear-gradient(165deg,#2C3A4B 0%,#232B39 45%,#2E2230 75%,#3A1C29 100%)}
+    radial-gradient(60vmax 50vmax at 12% 6%,rgba(255,255,255,.13),transparent 60%),
+    radial-gradient(50vmax 42vmax at 95% 35%,rgba(255,255,255,.07),transparent 62%),
+    radial-gradient(70vmax 55vmax at 60% 108%,rgba(255,255,255,.06),transparent 60%),
+    linear-gradient(165deg,#24262A 0%,#141518 45%,#0E1013 75%,#18191C 100%)}
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:repeating-conic-gradient(rgba(255,255,255,.035) 0 25%,transparent 0 50%);background-size:188px 188px;
   -webkit-mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.55));mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.55))}
@@ -382,7 +381,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .burger{background:rgba(255,255,255,.10);box-shadow:var(--card)}
 
 /* faixa do topo: vidro fosco escuro (o conteúdo passa borrado por trás) */
-.top{background:rgba(30,37,50,.55);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%)}
+.top{background:rgba(20,21,24,.55);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%)}
 .menu a:hover,.menu a[aria-current=page]{color:#fff;border-bottom-color:#fff}
 
 /* botões bordô em vidro */
@@ -397,7 +396,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 
 /* hero */
 .hero::before{display:none}
-.hero::after{background:radial-gradient(ellipse,rgba(222,108,136,.16),transparent 65%)}
+.hero::after{background:radial-gradient(ellipse,rgba(255,255,255,.08),transparent 65%)}
 
 /* linha do tempo */
 .line{background:rgba(255,255,255,.12)}
@@ -428,7 +427,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .foot a:hover{color:#fff}
 
 @media (max-width:900px){
-  .menu{background:rgba(30,37,50,.86);border:var(--gb);-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);box-shadow:0 24px 50px rgba(0,0,0,.45)}
+  .menu{background:rgba(20,21,24,.88);border:var(--gb);-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);box-shadow:0 24px 50px rgba(0,0,0,.45)}
   .menu a{border-bottom-color:var(--line)}
   .menu a[aria-current=page]{color:var(--bor)}
 }
