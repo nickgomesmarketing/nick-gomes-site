@@ -393,7 +393,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 
 /* símbolo e quadrado-guia mantêm o bordô da marca */
 .sym i{background:var(--brand)}
-#guide{background:linear-gradient(135deg,#A3304C,var(--brand));border:1px solid rgba(255,255,255,.35);box-shadow:0 0 0 4px rgba(222,108,136,.18),0 8px 22px rgba(0,0,0,.45)}
+#guide{background:var(--brand);border:0;box-shadow:none}
 
 /* hero */
 .hero::before{display:none}
