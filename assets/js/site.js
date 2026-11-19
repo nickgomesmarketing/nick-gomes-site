@@ -119,7 +119,7 @@
   root.style.setProperty('--hh', hh() + 'px');
 
   // 1) Frase da primeira dobra sendo escrita (mantém <br> e destaques; texto completo no aria-label)
-  var h = document.querySelector('.hero:not(.inner) h1');
+  var h = document.querySelector('h1[data-type]');   // só a frase do Início é digitada
   if (h && !reduce) {
     h.setAttribute('aria-label', h.textContent.replace(/\s+/g, ' ').trim());
     var chars = [];
