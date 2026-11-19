@@ -109,3 +109,84 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(req);
   req();
 })();
+
+/* ---------- site tecnológico: frase digitada, dobras sobrepostas e conteúdo surgindo ---------- */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 1) Frase principal sendo escrita (o texto completo fica no HTML para o Google e leitores de tela)
+  var h = document.querySelector('.hero:not(.inner) h1');
+  if (h && !reduce) {
+    var txt = h.textContent;
+    h.setAttribute('aria-label', txt);
+    h.textContent = '';
+    h.classList.add('tw');
+    var chars = [];
+    txt.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch'; s.setAttribute('aria-hidden', 'true'); s.textContent = c;
+      h.appendChild(s); chars.push(s);
+    });
+    var caret = document.createElement('span');
+    caret.className = 'caret'; caret.setAttribute('aria-hidden', 'true');
+    h.insertBefore(caret, chars[0]);
+    var i = 0;
+    var tick = function () {
+      if (i < chars.length) {
+        chars[i].classList.add('on');
+        h.insertBefore(caret, chars[i].nextSibling);
+        i++;
+        setTimeout(tick, chars[i - 1].textContent === ' ' ? 30 : 55 + Math.random() * 35);
+      } else { h.classList.add('done'); }
+    };
+    setTimeout(tick, 350);
+  }
+
+  // 2) Dobras: cada bloco fica preso quando termina e o próximo sobe por cima
+  var folds = [].slice.call(document.querySelectorAll('.fold'));
+  var top = document.querySelector('.top');
+  if (folds.length && !reduce) {
+    var place = function () {
+      var hh = top ? top.offsetHeight : 0;
+      folds.forEach(function (f, k) {
+        f.style.zIndex = k + 1;
+        f.style.top = Math.min(hh, innerHeight - f.offsetHeight) + 'px';
+      });
+    };
+    place();
+    addEventListener('resize', place);
+    addEventListener('load', place);
+    if (window.ResizeObserver) { var ro = new ResizeObserver(place); folds.forEach(function (f) { ro.observe(f); }); }
+    // o bloco que está sendo coberto recua um pouco e escurece
+    var raf = 0;
+    var shade = function () {
+      raf = 0;
+      for (var k = 0; k < folds.length - 1; k++) {
+        var f = folds[k], nx = folds[k + 1];
+        var r = nx.getBoundingClientRect();
+        var stuckAt = parseFloat(f.style.top) || 0;
+        var cover = Math.max(0, Math.min(1, (innerHeight - r.top) / Math.max(1, innerHeight - stuckAt)));
+        var fr = f.getBoundingClientRect();
+        var pinned = Math.abs(fr.top - stuckAt) < 2 && cover > 0;
+        var p = pinned ? cover : 0;
+        f.style.transform = p ? 'scale(' + (1 - 0.05 * p).toFixed(4) + ')' : '';
+        f.style.filter = p ? 'brightness(' + (1 - 0.45 * p).toFixed(3) + ')' : '';
+      }
+    };
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(shade); }, { passive: true });
+    shade();
+  }
+
+  // 3) Cartões e títulos surgem ao entrar na tela
+  if (!reduce && 'IntersectionObserver' in window) {
+    var items = [].slice.call(document.querySelectorAll('.fold:not(.fold-hero) .h, .pilar, .stat, .site, .rv, .card, .cc, .badge, .photo, .bio p, .cta'));
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('shown'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el, n) {
+      el.classList.add('reveal');
+      el.style.transitionDelay = ((n % 3) * 90) + 'ms';
+      io.observe(el);
+    });
+  }
+})();
