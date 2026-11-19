@@ -456,3 +456,14 @@ body,body *{font-family:var(--mont)!important}
   .hero .sym{width:80px;height:80px}
   .num{font-size:30px}
 }
+
+/* WhatsApp em verde (como no sites.nickgomes.com) */
+:root{--wa:#1DAA61;--wa-dark:#178A4F}
+a.btn[href*="wa.me"],.menu .mcta a[href*="wa.me"],a.cc.wa{background:var(--wa);color:#fff}
+a.btn[href*="wa.me"]:hover,.menu .mcta a[href*="wa.me"]:hover{background:var(--wa-dark)}
+a.cc.wa{box-shadow:0 14px 34px rgba(29,170,97,.28)}
+a.cc.wa .k{color:#fff}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(29,170,97,.45)}60%{box-shadow:0 0 0 14px rgba(29,170,97,0)}}
+/* nota 5,0 do Google no mesmo verde */
+.score .h,.badge .h{color:var(--wa)}
+.hero h1{text-wrap:balance}
