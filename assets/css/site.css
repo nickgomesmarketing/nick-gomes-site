@@ -1,10 +1,10 @@
 /* Nick Gomes — site.css */
-@font-face{font-family:Archivo;src:url(../fonts/archivo.woff2) format("woff2");font-weight:800;font-stretch:62% 125%;font-display:swap}
-@font-face{font-family:Poppins;src:url(../fonts/poppins-regular.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:Poppins;src:url(../fonts/poppins-medium.woff2) format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:Poppins;src:url(../fonts/poppins-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:Poppins;src:url(../fonts/poppins-bold.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:JB;src:url(../fonts/jbmono.woff2) format("woff2");font-weight:400;font-display:swap}
+
+
+
+
+
+
 
 :root{
   --g:#EEF1F3;--g2:#F7F9FA;--k:#0E1013;--t:#3A424A;--t2:#22272C;--cz:#646E77;--line:#D5DCE1;
@@ -338,56 +338,121 @@ h1,h2,h3{margin:0}
 .step p a.red,.step p a.red b{color:var(--bor)}
 
 /* =========================================================
-   TEMA VIDRO CLARO — fundo claro, caixas de vidro com os
-   contornos do neumorfismo, destaques em bordô (#7A1F33).
+   IDENTIDADE "NICK GOMES SITES" (igual a sites.nickgomes.com)
+   Montserrat · azul #4B7293 · navy #15232F · branco/névoa
+   Logo: xadrez 5×5 grafite + NICK / GOMES (Gomes em azul)
    Mesma estrutura, textos e animações.
    ========================================================= */
+@font-face{font-family:Montserrat;src:url(../fonts/montserrat.woff2) format("woff2");font-weight:100 900;font-display:swap}
 :root{
-  --glass:rgba(255,255,255,.46);
-  --rim:1px solid rgba(255,255,255,.8);
-  --blur:blur(18px) saturate(160%);
-  --up:18px 20px 44px rgba(40,55,70,.16),-12px -12px 30px rgba(255,255,255,.9),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.07);
-  --card:12px 14px 30px rgba(40,55,70,.14),-10px -10px 24px rgba(255,255,255,.85),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.06);
+  --blue:#4B7293;--blue-dark:#385C7B;--blue-mid:#7593AC;--blue-soft:#A9C3D7;
+  --navy:#15232F;--navy2:#1D2F3E;--ink:#17212A;--charcoal:#3B3B3B;--on-navy:#C1CFD8;
+  --g:#EEF3F6;--g2:#FFFFFF;--k:#17212A;--t:#5B6770;--t2:#17212A;--cz:#5B6770;--line:#DBE4EA;
+  --bor:#4B7293;--bol:#A9C3D7;--gr:#15232F;--az:#4B7293;--brand:#4B7293;
+  --azg:linear-gradient(155deg,#A9C3D7,#7593AC 45%,#4B7293);
+  --ck:conic-gradient(var(--charcoal) 25%,#fff 0 50%,var(--charcoal) 0 75%,#fff 0);
+  --up:0 1px 2px rgba(23,33,42,.04),0 14px 34px rgba(21,35,47,.06);
+  --card:0 1px 2px rgba(23,33,42,.04),0 8px 24px rgba(21,35,47,.05);
+  --press:none;--btn:none;
+  --mont:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-body{background:transparent}
-html{background:#EEF1F3}
-/* fundo claro, sem xadrez: só manchas suaves para o vidro ter o que desfocar */
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(55vmax 45vmax at 8% 4%,rgba(90,113,134,.20),transparent 60%),
-    radial-gradient(45vmax 40vmax at 96% 30%,rgba(255,255,255,.95),transparent 60%),
-    radial-gradient(50vmax 42vmax at 85% 100%,rgba(122,31,51,.08),transparent 60%),
-    radial-gradient(45vmax 40vmax at 0% 85%,rgba(90,113,134,.12),transparent 60%),
-    #EEF1F3}
+html{background:#fff}
+body{background:#fff;color:var(--ink);font-family:var(--mont)}
+body,body *{font-family:var(--mont)!important}
 .hero::before{display:none}
+.hero::after{left:76%;top:0;width:48%;height:100%;max-width:none;transform:none;background-image:radial-gradient(var(--line) 1.4px,transparent 1.6px);background-size:22px 22px;background-color:transparent}
 
-/* superfícies de vidro com contorno */
-.bar,.panel,.card,.site,.rv,.feat,.photo,.cc.em,.badge,.ghost,.burger,.tab,.tp{
-  background:var(--glass);border:var(--rim);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
-.bar{background:rgba(255,255,255,.55);box-shadow:var(--up)}
-.panel,.feat,.photo,.cc.em{box-shadow:var(--up)}
-.card,.rv,.badge,.site,.ghost,.burger{box-shadow:var(--card)}
-.top{background:rgba(238,241,243,.72);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%)}
+/* títulos: Montserrat 800, caixa normal */
+.h,.num,.plate .n,.card .big,.cta li span{font-family:var(--mont);font-stretch:normal;font-weight:800;text-transform:none;letter-spacing:-.02em;line-height:1.1}
+.hero h1{font-size:clamp(36px,5.6vw,64px);line-height:1.07}
+.hero.inner h1{font-size:clamp(32px,4.8vw,56px)}
+.panel>.h2c{font-size:clamp(26px,2.9vw,38px)}
+.step h2{font-size:clamp(22px,2.3vw,30px)}
+.sec-head h2{font-size:clamp(28px,3.4vw,40px)}
+.cta h2{font-size:clamp(28px,3.2vw,42px);white-space:normal}
+.num{font-size:34px}
+.plate .n{font-size:84px}
+.card .big{font-size:46px}
+.cta li span{font-size:30px}
+.score .h{font-size:56px}.badge .h{font-size:40px}
+.cc .v{font-size:clamp(24px,2.6vw,34px)}
+.cc.em .v{font-size:min(34px,7.4cqi)}
+.m{font:700 12px/1.4 var(--mont);letter-spacing:.06em;color:var(--blue);text-transform:uppercase}
+.red{color:var(--blue)}
+.lead{color:var(--t)}
 
-/* abas dos pilares: três botões de vidro; a ativa em relevo com base bordô */
-.tabs{gap:clamp(8px,1.2vw,16px)}
-.tab{border-radius:22px;box-shadow:var(--card);padding:20px 10px;transition:transform .15s,box-shadow .15s}
-.tab:hover{transform:translateY(-2px)}
-.tab[aria-selected=true]{background:rgba(255,255,255,.72);box-shadow:var(--up),inset 0 -5px 0 var(--bor)}
+/* logo: xadrez 5×5 grafite + NICK / GOMES */
+.sym{background:var(--ck);background-size:40% 40%;background-position:0 0}
+.sym::before{display:none}
+.sym i{opacity:0}
+.brand{gap:10px}
+.brand .sym{width:28px;height:28px}
+.w{font-family:var(--mont);font-weight:800;font-stretch:normal;letter-spacing:0;line-height:.95;text-transform:uppercase;color:var(--blue)}
+.w::first-line{color:var(--ink)}
+.brand .w{font-size:.95rem}
+.hero .sym{width:100px;height:100px}
 
-/* conteúdo do pilar num cartão de vidro */
-.tp{margin-top:clamp(20px,2.4vw,30px);padding:clamp(26px,3.6vw,48px);border-radius:28px;background:linear-gradient(165deg,rgba(255,255,255,.62),rgba(255,255,255,.32));box-shadow:var(--up)}
+/* cabeçalho branco com linha */
+.top{background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{background:transparent;border:0;box-shadow:none;border-radius:0}
+.menu a{font:600 14px var(--mont);letter-spacing:0;text-transform:none;color:var(--t);border-bottom:0}
+.menu a:hover{color:var(--ink)}
+.menu a[aria-current=page]{color:var(--blue);border-bottom:0}
+
+/* botões em pílula */
+.btn,.menu .mcta a{background:var(--blue);color:#fff;font:700 15px/1.2 var(--mont);letter-spacing:0;text-transform:none;border-radius:999px;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.btn:hover,.menu .mcta a:hover{background:var(--blue-dark)}
+.ghost{background:#fff;color:var(--ink);font:700 15px/1.2 var(--mont);letter-spacing:0;text-transform:none;border:1px solid var(--line);border-radius:999px;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.ghost:hover{border-color:var(--blue-soft)}
+.burger{background:#fff;border:1px solid var(--line);box-shadow:none;border-radius:12px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(75,114,147,.45)}60%{box-shadow:0 0 0 14px rgba(75,114,147,0)}}
+
+/* superfícies: cartões brancos com borda fina; painel em névoa */
+.card,.site,.rv,.feat,.photo,.cc.em,.badge,.tp{background:#fff;border:1px solid var(--line);box-shadow:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:20px}
+.panel{background:var(--g);border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.photo .in,.plate,.cc.em .ic{background:var(--g);box-shadow:none;border:1px solid var(--line)}
+.card.hl{outline:2px solid var(--blue);border-color:transparent}
+.c1{color:var(--blue-soft)}.c2{color:var(--blue-mid)}.c3{color:var(--blue)}
+.live{color:var(--blue-dark)}
+.live::before{background:var(--blue);box-shadow:0 0 0 4px rgba(75,114,147,.18)}
+
+/* abas dos pilares */
+.tabs{gap:clamp(8px,1.2vw,14px)}
+.tab{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:none;color:var(--t);font:700 14px var(--mont);letter-spacing:.02em;text-transform:none;padding:18px 10px;-webkit-backdrop-filter:none;backdrop-filter:none}
+.tab:hover{transform:none;border-color:var(--blue-soft)}
+.tab[aria-selected=true]{background:#fff;color:var(--blue);border:2px solid var(--blue);box-shadow:var(--card)}
+.tp{margin-top:clamp(18px,2.2vw,26px);padding:clamp(24px,3.2vw,40px)}
+.tp li{color:var(--ink)}
+
+/* linha do tempo e quadrado-guia em azul */
+.line{background:var(--line)}
+.line b,.js .line b{background:var(--blue)}
+#guide{background:var(--blue);border:0;box-shadow:none}
+
+/* contato */
+.cc.wa{background:var(--blue-dark);color:#fff;border:0;box-shadow:0 14px 34px rgba(75,114,147,.28);-webkit-backdrop-filter:none;backdrop-filter:none}
+.cc.wa .k{color:#fff}
+
+/* chamada final e rodapé em navy */
+.cta{background:var(--navy);border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.cta h2 .red{color:var(--blue-soft)}
+.cta ol{background:#fff;color:var(--ink);border:0;box-shadow:none}
+.cta li span{color:var(--blue)}
+.foot{background:var(--navy);color:var(--on-navy);margin-top:40px}
+.foot .brand .w{color:var(--blue-soft)}
+.foot .brand .w::first-line{color:#fff}
+.foot .brand .sym{width:24px;height:24px;background:conic-gradient(#fff 25%,var(--navy) 0 50%,#fff 0 75%,var(--navy) 0);background-size:40% 40%}
+.foot .m{color:var(--blue-soft)}
+.foot a:hover{color:#fff}
 
 @media (max-width:900px){
-  .menu{background:rgba(247,249,250,.9);border:var(--rim);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%)}
+  .menu{background:#fff;border:1px solid var(--line);box-shadow:0 20px 40px rgba(21,35,47,.12);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .menu a{border-bottom:1px solid var(--line)}
 }
 @media (max-width:760px){
-  :root{
-    --up:10px 12px 28px rgba(40,55,70,.15),-8px -8px 20px rgba(255,255,255,.85),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.07);
-    --card:8px 10px 20px rgba(40,55,70,.13),-6px -6px 16px rgba(255,255,255,.8),inset 1px 1px 0 rgba(255,255,255,.95),inset -1px -1px 0 rgba(40,55,70,.06);
-  }
-  .panel{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
-  .tabs{overflow:visible;gap:10px}
-  .tab{border-radius:20px;padding:18px 4px 16px;font-size:11.5px;letter-spacing:.08em}
-  .tp{padding:26px 22px;border-radius:26px}
+  .panel{background:var(--g);border-radius:24px}
+  .tab{font-size:12px;padding:16px 4px;border-radius:14px}
+  .tp{padding:24px 20px}
+  .hero .sym{width:80px;height:80px}
+  .num{font-size:30px}
 }
