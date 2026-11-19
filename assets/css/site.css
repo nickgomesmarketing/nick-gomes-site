@@ -536,3 +536,6 @@ a.cc.wa .k{color:#fff}
 .stat p:not(.n){margin-top:14px;font-size:16px;line-height:1.55;color:#D3DDE4}
 @media (max-width:1100px){.dados .g3{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.dados::before{animation:none}}
+/* projetos: título centralizado em verde; frase do bloco de dados em branco */
+.noar>.h{color:#148349;text-align:center;margin:0 auto clamp(28px,3.4vw,44px)}
+.dados>.h{color:#fff}
