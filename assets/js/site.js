@@ -110,87 +110,115 @@
   req();
 })();
 
-/* ---------- site tecnológico: frase digitada, dobras sobrepostas e conteúdo surgindo ---------- */
+/* ---------- site tecnológico: frase digitada, lâminas com ScrollTrigger + rolagem suave ---------- */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var top = document.querySelector('.top');
+  var hh = function () { return top ? top.offsetHeight : 0; };
+  root.style.setProperty('--hh', hh() + 'px');
 
-  // 1) Frase principal sendo escrita (o texto completo fica no HTML para o Google e leitores de tela)
+  // 1) Frase da primeira dobra sendo escrita (mantém <br> e destaques; texto completo no aria-label)
   var h = document.querySelector('.hero:not(.inner) h1');
   if (h && !reduce) {
-    var txt = h.textContent;
-    h.setAttribute('aria-label', txt);
-    h.textContent = '';
-    h.classList.add('tw');
+    h.setAttribute('aria-label', h.textContent.replace(/\s+/g, ' ').trim());
     var chars = [];
-    txt.split('').forEach(function (c) {
-      var s = document.createElement('span');
-      s.className = 'ch'; s.setAttribute('aria-hidden', 'true'); s.textContent = c;
-      h.appendChild(s); chars.push(s);
-    });
-    var caret = document.createElement('span');
-    caret.className = 'caret'; caret.setAttribute('aria-hidden', 'true');
-    h.insertBefore(caret, chars[0]);
+    var wrap = function (node) {
+      [].slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split('').forEach(function (c) {
+            var s = document.createElement('span'); s.className = 'ch'; s.setAttribute('aria-hidden', 'true'); s.textContent = c;
+            frag.appendChild(s); chars.push(s);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') { wrap(n); }
+      });
+    };
+    wrap(h);
+    h.classList.add('tw');
+    var caret = document.createElement('span'); caret.className = 'caret'; caret.setAttribute('aria-hidden', 'true');
+    chars[0].parentNode.insertBefore(caret, chars[0]);
     var i = 0;
     var tick = function () {
       if (i < chars.length) {
-        chars[i].classList.add('on');
-        h.insertBefore(caret, chars[i].nextSibling);
-        i++;
-        setTimeout(tick, chars[i - 1].textContent === ' ' ? 30 : 55 + Math.random() * 35);
+        var c = chars[i]; c.classList.add('on'); c.parentNode.insertBefore(caret, c.nextSibling); i++;
+        setTimeout(tick, c.textContent === ' ' ? 30 : 50 + Math.random() * 35);
       } else { h.classList.add('done'); }
     };
     setTimeout(tick, 350);
   }
 
-  // 2) Dobras: cada bloco fica preso quando termina e o próximo sobe por cima
   var folds = [].slice.call(document.querySelectorAll('.fold'));
-  var top = document.querySelector('.top');
-  if (folds.length && !reduce) {
-    var place = function () {
-      var hh = top ? top.offsetHeight : 0;
-      folds.forEach(function (f, k) {
-        f.style.zIndex = k + 1;
-        f.style.top = Math.min(hh, innerHeight - f.offsetHeight) + 'px';
+  if (reduce || !folds.length) { [].forEach.call(document.querySelectorAll('.reveal'), function (e) { e.classList.add('shown'); }); return; }
+
+  // 2) Lâminas presas (position: sticky, feito pelo navegador = fluido). Cada uma prende quando
+  //    termina de aparecer; a próxima só sobe depois de uma pausa (--hold) para dar tempo de ler.
+  var place = function () {
+    var H = hh(); root.style.setProperty('--hh', H + 'px');
+    folds.forEach(function (f, k) { f.style.zIndex = k + 1; f.style.top = Math.min(H, innerHeight - f.offsetHeight) + 'px'; });
+  };
+  place();
+
+  // 3) Rolagem suave (Lenis) sincronizada com o ScrollTrigger
+  var lenis = null;
+  if (window.Lenis) {
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.9 });
+    root.classList.add('lenis');
+  }
+  var hasGsap = window.gsap && window.ScrollTrigger;
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    if (lenis) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+    // a lâmina coberta recua, sobe e escurece acompanhando a rolagem (só transform/opacity)
+    folds.forEach(function (f, k) {
+      var nx = folds[k + 1]; if (!nx) return;
+      gsap.fromTo(f, { '--p': 0 }, {
+        '--p': 1, ease: 'none',
+        scrollTrigger: { trigger: nx, start: 'top bottom', end: function () { return 'top ' + hh() + 'px'; }, scrub: 0.5, invalidateOnRefresh: true }
       });
-    };
-    place();
+    });
+    // cartões e títulos surgem ao entrar na tela
+    var items = [].slice.call(document.querySelectorAll('.fold:not(.fold-hero) .h, .pilar, .stat, .site, .rv, .card, .cc, .badge, .photo, .bio p, .cta'));
+    items.forEach(function (el) { el.classList.add('reveal'); });
+    ScrollTrigger.batch(items, {
+      start: 'top 90%', once: true,
+      onEnter: function (b) { b.forEach(function (el, n) { el.style.transitionDelay = (n * 90) + 'ms'; el.classList.add('shown'); }); }
+    });
+    ScrollTrigger.addEventListener('refreshInit', place);
+    addEventListener('load', function () { ScrollTrigger.refresh(); });
+    if (window.ResizeObserver) { var t0; new ResizeObserver(function () { clearTimeout(t0); t0 = setTimeout(function () { ScrollTrigger.refresh(); }, 120); }).observe(document.body); }
+  } else {
     addEventListener('resize', place);
-    addEventListener('load', place);
-    if (window.ResizeObserver) { var ro = new ResizeObserver(place); folds.forEach(function (f) { ro.observe(f); }); }
-    // o bloco que está sendo coberto recua, sobe um pouco e escurece (só transform/opacity: fica fluido)
-    var raf = 0;
-    var shade = function () {
-      raf = 0;
-      var hh = top ? top.offsetHeight : 0;
-      for (var k = 0; k < folds.length - 1; k++) {
-        var f = folds[k], nx = folds[k + 1];
-        var h = f.offsetHeight, cur = f._p || 0;
-        var stuckAt = parseFloat(f.style.top) || 0;
-        var lt = f.getBoundingClientRect().top + 0.03 * cur * h;   // topo real (sem o efeito)
-        var p = 0;
-        if (Math.abs(lt - stuckAt) < 3) {                          // só quando o bloco está preso
-          var vis = Math.max(1, (lt + h) - Math.max(lt, hh));      // parte dele que aparece na tela
-          p = ((lt + h) - nx.getBoundingClientRect().top) / vis;   // quanto o próximo já cobriu
-          p = Math.max(0, Math.min(1, p));
-        }
-        if (Math.abs(cur - p) > 0.002) { f._p = p; f.style.setProperty('--p', p.toFixed(3)); }
-      }
-    };
-    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(shade); }, { passive: true });
-    addEventListener('resize', shade);
-    shade();
+    [].forEach.call(document.querySelectorAll('.reveal'), function (e) { e.classList.add('shown'); });
   }
 
-  // 3) Cartões e títulos surgem ao entrar na tela
-  if (!reduce && 'IntersectionObserver' in window) {
-    var items = [].slice.call(document.querySelectorAll('.fold:not(.fold-hero) .h, .pilar, .stat, .site, .rv, .card, .cc, .badge, .photo, .bio p, .cta'));
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('shown'); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    items.forEach(function (el, n) {
-      el.classList.add('reveal');
-      el.style.transitionDelay = ((n % 3) * 90) + 'ms';
-      io.observe(el);
-    });
-  }
+  // 4) Links internos (#pilares, #projetos…): vão até o começo da lâmina certa
+  var naturalTop = function (el) {
+    var f = el.closest('.fold'); if (!f) return el.getBoundingClientRect().top + scrollY - hh();
+    var y = 0, n = f; while (n && n !== document.body) { y += n.offsetTop || 0; n = n.offsetParent; }
+    var main = f.parentNode, acc = main.getBoundingClientRect().top + scrollY;
+    for (var k = 0; k < folds.length; k++) {
+      var g = folds[k]; if (k) acc += parseFloat(getComputedStyle(g).marginTop) || 0;
+      if (g === f) break; acc += g.offsetHeight;
+    }
+    var inner = f === el ? 0 : (el.offsetTop || 0);
+    return acc + (el.offsetParent === f ? inner : 0) - hh();
+  };
+  var go = function (id, instant) {
+    var el = document.getElementById(id); if (!el) return false;
+    var y = Math.max(0, naturalTop(el));
+    if (lenis) lenis.scrollTo(y, { immediate: !!instant }); else scrollTo({ top: y, behavior: instant ? 'auto' : 'smooth' });
+    return true;
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="#"]'); if (!a) return;
+    var u = new URL(a.href, location.href);
+    if (u.pathname === location.pathname && u.hash.length > 1 && go(decodeURIComponent(u.hash.slice(1)))) { e.preventDefault(); history.replaceState(null, '', u.hash); }
+  });
+  if (location.hash.length > 1) addEventListener('load', function () { setTimeout(function () { go(decodeURIComponent(location.hash.slice(1)), true); }, 60); });
 })();
