@@ -458,12 +458,12 @@ body,body *{font-family:var(--mont)!important}
 }
 
 /* WhatsApp em verde (como no sites.nickgomes.com) */
-:root{--wa:#1DAA61;--wa-dark:#178A4F}
+:root{--wa:#FF3D8B;--wa-dark:#E62F78}
 a.btn[href*="wa.me"],.menu .mcta a[href*="wa.me"],a.cc.wa{background:var(--wa);color:#fff}
 a.btn[href*="wa.me"]:hover,.menu .mcta a[href*="wa.me"]:hover{background:var(--wa-dark)}
-a.cc.wa{box-shadow:0 14px 34px rgba(29,170,97,.28)}
+a.cc.wa{box-shadow:0 14px 34px rgba(255,61,139,.28)}
 a.cc.wa .k{color:#fff}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(29,170,97,.45)}60%{box-shadow:0 0 0 14px rgba(29,170,97,0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,61,139,.45)}60%{box-shadow:0 0 0 14px rgba(255,61,139,0)}}
 /* nota 5,0 do Google no mesmo verde */
 .score .h,.badge .h{color:var(--wa)}
 .hero h1{text-wrap:balance}
@@ -493,7 +493,7 @@ a.cc.wa .k{color:#fff}
 .steps{padding-left:0}
 
 /* "Tecnologia exclusiva" em verde (tom do botão, um pouco mais escuro para ler bem) */
-.site p b{color:#148349}
+.site p b{color:#FF3D8B}
 
 /* Primeira dobra do Início: fundo preto translúcido com luzes azuis em movimento */
 .hero:not(.inner){background:#06080C;color:#fff;min-height:min(84vh,780px);display:flex;flex-direction:column;justify-content:center;align-items:center;isolation:isolate;padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(80px,10vw,140px)}
@@ -502,7 +502,7 @@ a.cc.wa .k{color:#fff}
     radial-gradient(38% 48% at 18% 28%,rgba(75,114,147,.75),transparent 70%),
     radial-gradient(34% 46% at 84% 72%,rgba(117,147,172,.55),transparent 70%),
     radial-gradient(28% 36% at 62% 8%,rgba(75,114,147,.45),transparent 70%),
-    radial-gradient(22% 30% at 30% 92%,rgba(29,170,97,.18),transparent 70%);
+    radial-gradient(22% 30% at 30% 92%,rgba(255,61,139,.18),transparent 70%);
   filter:blur(30px);animation:hero-drift 16s ease-in-out infinite alternate}
 .hero:not(.inner)::after{content:"";position:absolute;inset:0;left:0;top:0;width:100%;height:100%;max-width:none;transform:none;z-index:0;
   background:
@@ -517,7 +517,7 @@ a.cc.wa .k{color:#fff}
 .hero:not(.inner) .actions{animation:hero-in .9s .3s cubic-bezier(.2,.7,.2,1) both}
 .hero:not(.inner) .ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.24);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .hero:not(.inner) .ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4)}
-.hero:not(.inner) .btn{box-shadow:0 12px 34px rgba(29,170,97,.35)}
+.hero:not(.inner) .btn{box-shadow:0 12px 34px rgba(255,61,139,.35)}
 .hero:not(.inner)+.wrap{margin-top:clamp(40px,5vw,70px)}
 @keyframes hero-drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(4%,-3%,0) scale(1.06)}100%{transform:translate3d(-3%,3%,0) scale(1.02)}}
 @keyframes hero-shine{0%{background-position:0% 50%}100%{background-position:100% 50%}}
@@ -527,7 +527,7 @@ a.cc.wa .k{color:#fff}
 
 /* Início: bloco de dados (fundo preto translúcido, frase e números em verde) */
 .dados{position:relative;overflow:hidden;isolation:isolate;margin-top:clamp(56px,7vw,96px);padding:clamp(40px,5vw,72px) clamp(22px,4vw,60px);border-radius:28px;background:#06080C;color:#fff;text-align:center}
-.dados::before{content:"";position:absolute;inset:-20%;z-index:-1;background:radial-gradient(35% 50% at 15% 20%,rgba(75,114,147,.6),transparent 70%),radial-gradient(30% 45% at 90% 85%,rgba(29,170,97,.22),transparent 70%),radial-gradient(30% 40% at 70% 10%,rgba(117,147,172,.35),transparent 70%);filter:blur(30px);animation:hero-drift 18s ease-in-out infinite alternate}
+.dados::before{content:"";position:absolute;inset:-20%;z-index:-1;background:radial-gradient(35% 50% at 15% 20%,rgba(75,114,147,.6),transparent 70%),radial-gradient(30% 45% at 90% 85%,rgba(255,61,139,.22),transparent 70%),radial-gradient(30% 40% at 70% 10%,rgba(117,147,172,.35),transparent 70%);filter:blur(30px);animation:hero-drift 18s ease-in-out infinite alternate}
 .dados::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(rgba(255,255,255,.08) 1.2px,transparent 1.5px) 0 0/26px 26px,rgba(6,8,12,.45)}
 .dados>.h{color:var(--wa);font-size:clamp(26px,3vw,40px);line-height:1.15;max-width:22em;margin:0 auto;text-wrap:balance}
 .dados .g3{margin-top:clamp(30px,4vw,50px);text-align:left}
@@ -572,7 +572,7 @@ body::before{content:"";position:fixed;inset:-10%;z-index:-2;pointer-events:none
   background:
     radial-gradient(34% 40% at 12% 18%,rgba(75,114,147,.42),transparent 70%),
     radial-gradient(30% 38% at 90% 40%,rgba(117,147,172,.26),transparent 70%),
-    radial-gradient(30% 36% at 40% 100%,rgba(29,170,97,.12),transparent 70%),
+    radial-gradient(30% 36% at 40% 100%,rgba(255,61,139,.12),transparent 70%),
     #05070A;filter:blur(20px)}
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(rgba(255,255,255,.06) 1.1px,transparent 1.4px) 0 0/26px 26px}
 
@@ -590,7 +590,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .card.hl{outline:1.5px solid var(--blue);border-color:transparent}
 .ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.2)}
 .ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35)}
-.site p b{color:#2BD07A}
+.site p b{color:#FF3D8B}
 .live{color:#A9C3D7}
 .lead{color:var(--t)}
 .cc.em .v,.cc .v{color:#fff}
