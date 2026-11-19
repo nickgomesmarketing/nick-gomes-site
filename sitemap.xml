@@ -3,6 +3,8 @@
   <url>
     <loc>https://www.nickgomes.com/</loc>
     <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
     <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-lazer-combat-rush.webp</image:loc></image:image>
     <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-imoveis-guilherme-azevedo.webp</image:loc></image:image>
     <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-servicos-perform.webp</image:loc></image:image>
@@ -10,9 +12,26 @@
   <url>
     <loc>https://www.nickgomes.com/quem-somos/</loc>
     <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.nickgomes.com/assets/img/nick-gomes.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.nickgomes.com/contato/</loc>
     <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nickgomes.com/politica-de-privacidade/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.nickgomes.com/termos-de-uso/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

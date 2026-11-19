@@ -4,12 +4,14 @@
 
 Atende empresas de pequeno e médio porte, como escritórios de advocacia, contabilidade, administradoras de condomínio, escolas, setor moveleiro, óleo e gás e peritos. Idealizador: Nick Gomes, formado em Comércio Exterior, com experiência em empresas de tecnologia, condominial e arquitetura.
 
-Contato: WhatsApp +55 11 94504-5350 · contato@nickgomes.com
+Contato: WhatsApp +55 11 94504-5350 · contato (arroba) nickgomes.com
 
 ## Páginas
 
 - [Início](https://www.nickgomes.com/): os três pilares (Marca, Presença e Performance), dados sobre o consumidor digital, projetos no ar com tecnologia exclusiva (lazer, imóveis, serviços) e depoimentos de clientes no Google
 - [Quem somos](https://www.nickgomes.com/quem-somos/): quem é o Nick Gomes, missão e método de trabalho
+- [Política de privacidade](https://www.nickgomes.com/politica-de-privacidade/): como os dados pessoais são tratados (LGPD)
+- [Termos de uso](https://www.nickgomes.com/termos-de-uso/): regras de uso do site
 - [Contato](https://www.nickgomes.com/contato/): WhatsApp, e-mail e como funciona o primeiro contato
 
 ## Serviços

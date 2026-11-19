@@ -143,10 +143,10 @@
     var tick = function () {
       if (i < chars.length) {
         var c = chars[i]; c.classList.add('on'); c.parentNode.insertBefore(caret, c.nextSibling); i++;
-        setTimeout(tick, c.textContent === ' ' ? 30 : 50 + Math.random() * 35);
+        setTimeout(tick, c.textContent === ' ' ? 20 : 34 + Math.random() * 22);
       } else { h.classList.add('done'); }
     };
-    setTimeout(tick, 350);
+    setTimeout(tick, 120);
   }
 
   var folds = [].slice.call(document.querySelectorAll('.fold'));
@@ -160,8 +160,11 @@
   };
   place();
 
-  // 3) Rolagem suave (Lenis) sincronizada com o ScrollTrigger
+  var base = (document.querySelector('script[src*="site.js"]').getAttribute('src') || '').replace(/site\.js.*$/, '');
+  var load = function (src) { return new Promise(function (ok, no) { var s = document.createElement('script'); s.src = base + 'vendor/' + src; s.onload = ok; s.onerror = no; document.head.appendChild(s); }); };
   var lenis = null;
+  var fx = function () {
+  // 3) Rolagem suave (Lenis) sincronizada com o ScrollTrigger
   if (window.Lenis) {
     lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.9 });
     root.classList.add('lenis');
@@ -190,12 +193,21 @@
       onEnter: function (b) { b.forEach(function (el, n) { el.style.transitionDelay = (n * 90) + 'ms'; el.classList.add('shown'); }); }
     });
     ScrollTrigger.addEventListener('refreshInit', place);
-    addEventListener('load', function () { ScrollTrigger.refresh(); });
+    ScrollTrigger.refresh();
     if (window.ResizeObserver) { var t0; new ResizeObserver(function () { clearTimeout(t0); t0 = setTimeout(function () { ScrollTrigger.refresh(); }, 120); }).observe(document.body); }
   } else {
     addEventListener('resize', place);
     [].forEach.call(document.querySelectorAll('.reveal'), function (e) { e.classList.add('shown'); });
   }
+
+  };
+  // as animações de rolagem carregam só depois que a página já apareceu (não atrasam a abertura)
+  var start = function () {
+    load('gsap.min.js').then(function () { return Promise.all([load('ScrollTrigger.min.js'), load('lenis.min.js')]); }).then(fx, function () {
+      addEventListener('resize', place); [].forEach.call(document.querySelectorAll('.reveal'), function (e) { e.classList.add('shown'); });
+    });
+  };
+  if (document.readyState === 'complete') setTimeout(start, 50); else addEventListener('load', function () { setTimeout(start, 50); });
 
   // 4) Links internos (#pilares, #projetos…): vão até o começo da lâmina certa
   var naturalTop = function (el) {
@@ -221,4 +233,38 @@
     if (u.pathname === location.pathname && u.hash.length > 1 && go(decodeURIComponent(u.hash.slice(1)))) { e.preventDefault(); history.replaceState(null, '', u.hash); }
   });
   if (location.hash.length > 1) addEventListener('load', function () { setTimeout(function () { go(decodeURIComponent(location.hash.slice(1)), true); }, 60); });
+})();
+
+/* ---------- e-mail protegido e aviso de cookies (todas as páginas) ---------- */
+(function () {
+  // e-mail montado só no navegador: robôs que leem o código não encontram o endereço
+  [].forEach.call(document.querySelectorAll('a[data-m]'), function (a) {
+    try { a.href = 'mailto:' + atob(a.getAttribute('data-m')); a.removeAttribute('rel'); } catch (e) {}
+  });
+
+  // aviso de cookies (LGPD). Hoje o site não usa cookies de medição nem de anúncio;
+  // a escolha fica guardada e libera ferramentas futuras (ex.: Google Analytics) só com "Aceitar".
+  var KEY = 'ng-consent';
+  var get = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+  var set = function (v) { try { localStorage.setItem(KEY, v); } catch (e) {} window.ngConsent = v; document.dispatchEvent(new CustomEvent('ng-consent', { detail: v })); };
+  window.ngConsent = get();
+  var priv = (document.querySelector('.legal-links a') || {}).getAttribute ? document.querySelector('.legal-links a').getAttribute('href') : '/politica-de-privacidade/';
+  var box = null;
+  var show = function () {
+    if (box) { box.classList.add('on'); box.querySelector('button').focus(); return; }
+    box = document.createElement('div');
+    box.className = 'ck'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Aviso de cookies'); box.setAttribute('aria-live', 'polite');
+    box.innerHTML = '<b>Sua privacidade importa</b>Usamos apenas o essencial para o site funcionar. Ferramentas de medição só serão ativadas com o seu consentimento. Saiba mais na <a href="' + priv + '">Política de Privacidade</a>.' +
+      '<div class="ck-a"><button type="button" class="ok">Aceitar</button><button type="button" class="no">Recusar</button></div>';
+    document.body.appendChild(box);
+    box.querySelector('.ok').addEventListener('click', function () { set('granted'); hide(); });
+    box.querySelector('.no').addEventListener('click', function () { set('denied'); hide(); });
+    requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add('on'); }); });
+  };
+  var hide = function () { if (box) box.classList.remove('on'); };
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('[data-cookies]');
+    if (t) { e.preventDefault(); e.stopPropagation(); show(); }
+  }, true);
+  if (!window.ngConsent) setTimeout(show, 1200);
 })();
