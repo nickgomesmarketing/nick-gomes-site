@@ -157,23 +157,27 @@
     addEventListener('resize', place);
     addEventListener('load', place);
     if (window.ResizeObserver) { var ro = new ResizeObserver(place); folds.forEach(function (f) { ro.observe(f); }); }
-    // o bloco que está sendo coberto recua um pouco e escurece
+    // o bloco que está sendo coberto recua, sobe um pouco e escurece (só transform/opacity: fica fluido)
     var raf = 0;
     var shade = function () {
       raf = 0;
+      var hh = top ? top.offsetHeight : 0;
       for (var k = 0; k < folds.length - 1; k++) {
         var f = folds[k], nx = folds[k + 1];
-        var r = nx.getBoundingClientRect();
+        var h = f.offsetHeight, cur = f._p || 0;
         var stuckAt = parseFloat(f.style.top) || 0;
-        var cover = Math.max(0, Math.min(1, (innerHeight - r.top) / Math.max(1, innerHeight - stuckAt)));
-        var fr = f.getBoundingClientRect();
-        var pinned = Math.abs(fr.top - stuckAt) < 2 && cover > 0;
-        var p = pinned ? cover : 0;
-        f.style.transform = p ? 'scale(' + (1 - 0.05 * p).toFixed(4) + ')' : '';
-        f.style.filter = p ? 'brightness(' + (1 - 0.45 * p).toFixed(3) + ')' : '';
+        var lt = f.getBoundingClientRect().top + 0.03 * cur * h;   // topo real (sem o efeito)
+        var p = 0;
+        if (Math.abs(lt - stuckAt) < 3) {                          // só quando o bloco está preso
+          var vis = Math.max(1, (lt + h) - Math.max(lt, hh));      // parte dele que aparece na tela
+          p = ((lt + h) - nx.getBoundingClientRect().top) / vis;   // quanto o próximo já cobriu
+          p = Math.max(0, Math.min(1, p));
+        }
+        if (Math.abs(cur - p) > 0.002) { f._p = p; f.style.setProperty('--p', p.toFixed(3)); }
       }
     };
     addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(shade); }, { passive: true });
+    addEventListener('resize', shade);
     shade();
   }
 

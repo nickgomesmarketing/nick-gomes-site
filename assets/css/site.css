@@ -628,3 +628,54 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .fold .dados,.fold .noar{margin-top:0}
 .fold>.sec{padding-top:0;padding-bottom:0}
 .fold>.cta{margin-top:0}
+
+/* ---------- desempenho das dobras: só transform/opacity (sem blur pesado) ---------- */
+.fold{-webkit-backdrop-filter:none;backdrop-filter:none;background:#07090D;will-change:transform;transform:translate3d(0,calc(var(--p,0) * -3%),0) scale(calc(1 - var(--p,0) * .045))}
+.fold::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#020305;opacity:calc(var(--p,0) * .6);pointer-events:none;z-index:5}
+.fold-hero{background:transparent}
+.card,.site,.rv,.feat,.photo,.cc.em,.badge,.tp,.tab,.pilar,.stat,.cta,.ghost{-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* ---------- serviços maiores, com luz passando ---------- */
+.pilares{gap:clamp(18px,2vw,30px)}
+.pilar{position:relative;overflow:hidden;padding:clamp(30px,3vw,46px);border-radius:26px;min-height:100%}
+.pilar .pl{font-size:15px;gap:14px}
+.pilar .ti{width:32px;height:32px;transform:scale(1.35);transform-origin:left center}
+.pilar h3{font-size:clamp(26px,2.4vw,34px);margin-top:22px;letter-spacing:-.02em}
+.pilar>p:not(.pl){font-size:17.5px;line-height:1.6;margin:16px 0 22px}
+.pilar li{font-size:17px;margin-top:14px}
+.pilar li::before{width:15px;height:8px}
+.pilar .btn{font-size:16px;padding:18px 22px}
+.pilar::after{content:"";position:absolute;top:-30%;bottom:-30%;left:-70%;width:45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.07) 40%,rgba(127,169,207,.16) 50%,rgba(255,255,255,.07) 60%,transparent);transform:skewX(-18deg);animation:sweep 6s ease-in-out infinite;pointer-events:none}
+.pilar:nth-child(2)::after{animation-delay:1.2s}.pilar:nth-child(3)::after{animation-delay:2.4s}
+.pilar:hover{border-color:rgba(127,169,207,.45);box-shadow:0 0 0 1px rgba(127,169,207,.25),0 30px 70px rgba(75,114,147,.25)}
+@keyframes sweep{0%{left:-70%}55%,100%{left:130%}}
+.panel>.h2c{font-size:clamp(30px,3.4vw,48px)}
+
+/* ---------- depoimentos: todos, com o da Lívia em destaque ---------- */
+.revs{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:clamp(14px,1.6vw,22px);margin-top:40px}
+.rv-feat{grid-row:span 2;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,rgba(255,61,139,.12),rgba(255,255,255,.03))!important;border-color:rgba(255,61,139,.3)!important}
+.rv-feat blockquote{font-size:clamp(18px,1.5vw,21px);line-height:1.6}
+@media (max-width:1000px){.revs{grid-template-columns:1fr 1fr}.rv-feat{grid-column:1/-1;grid-row:auto}}
+@media (max-width:640px){.revs{grid-template-columns:1fr}}
+
+/* ---------- última lâmina: mais atrativa e tecnológica ---------- */
+.cta{position:relative;overflow:hidden;isolation:isolate;border:0;border-radius:34px;background:#07090D;padding:clamp(44px,6vw,96px);box-shadow:0 40px 120px rgba(255,61,139,.18),0 0 0 1px rgba(255,255,255,.06)}
+.cta::before{content:"";position:absolute;inset:-60%;right:auto;top:auto;width:auto;height:auto;opacity:1;z-index:-2;background:conic-gradient(from 0deg,transparent 0 62%,#FF3D8B 72%,#7FA9CF 82%,transparent 92%);animation:spin 7s linear infinite}
+.cta::after{content:"";position:absolute;inset:2px;border-radius:32px;z-index:-1;
+  background:
+    radial-gradient(40% 60% at 12% 20%,rgba(255,61,139,.22),transparent 70%),
+    radial-gradient(40% 60% at 90% 90%,rgba(75,114,147,.35),transparent 70%),
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/44px 44px,
+    #07090D}
+.cta h2{font-size:clamp(34px,4.4vw,64px);line-height:1.05;letter-spacing:-.03em;color:#fff}
+.cta h2 .red{background:linear-gradient(90deg,#FF3D8B,#FF8FBF,#FF3D8B);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:hero-shine 4s ease-in-out infinite alternate}
+.cta .sub{color:#C9D6DF;font-size:clamp(17px,1.4vw,21px)}
+.cta ol{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:22px}
+.cta li span{color:#FF3D8B;text-shadow:0 0 18px rgba(255,61,139,.55)}
+.cta .btn{position:relative;overflow:hidden;font-size:17px;padding:20px 24px;box-shadow:0 14px 40px rgba(255,61,139,.45)}
+.cta .btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);animation:sweep 3.2s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:760px){.cta{padding:40px 22px;border-radius:26px}.cta::after{border-radius:24px}}
+@media (prefers-reduced-motion:reduce){.pilar::after,.cta::before,.cta .btn::after,.cta h2 .red{animation:none}.fold{transform:none}}
+.cta::before{top:-60%;left:-60%;right:-60%;bottom:-60%;width:auto;height:auto;background-size:auto;opacity:1}
