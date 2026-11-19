@@ -253,7 +253,7 @@
   var show = function () {
     if (box) { box.classList.add('on'); box.querySelector('button').focus(); return; }
     box = document.createElement('div');
-    box.className = 'ck'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Aviso de cookies'); box.setAttribute('aria-live', 'polite');
+    box.className = 'cookie-bar'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', 'Aviso de cookies'); box.setAttribute('aria-live', 'polite');
     box.innerHTML = '<b>Sua privacidade importa</b>Usamos apenas o essencial para o site funcionar. Ferramentas de medição só serão ativadas com o seu consentimento. Saiba mais na <a href="' + priv + '">Política de Privacidade</a>.' +
       '<div class="ck-a"><button type="button" class="ok">Aceitar</button><button type="button" class="no">Recusar</button></div>';
     document.body.appendChild(box);

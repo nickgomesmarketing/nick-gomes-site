@@ -748,17 +748,17 @@ html.lenis,html.lenis body{height:auto}
 .foot{flex-wrap:wrap}
 
 /* aviso de cookies */
-.ck{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:560px;margin-left:auto;padding:20px 22px;border-radius:20px;background:rgba(10,13,18,.96);border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.55);color:#C9D6DF;font:400 14.5px/1.55 var(--mont);transform:translateY(20px);opacity:0;transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .35s}
-.ck.on{transform:none;opacity:1}
-.ck b{display:block;color:#fff;font-weight:700;margin-bottom:6px;font-size:15.5px}
-.ck a{color:#7FA9CF}
-.ck .ck-a{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.ck button{font:700 14px var(--mont);border-radius:999px;padding:11px 20px;cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
-.ck button.ok{background:#FF3D8B;border-color:#FF3D8B}
-.ck button:focus-visible{outline:2px solid #fff;outline-offset:2px}
-@media (max-width:520px){.ck{left:10px;right:10px;bottom:10px;padding:18px}.ck button{flex:1}}
+.cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:560px;margin-left:auto;padding:20px 22px;border-radius:20px;background:rgba(10,13,18,.96);border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.55);color:#C9D6DF;font:400 14.5px/1.55 var(--mont);transform:translateY(20px);opacity:0;transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .35s}
+.cookie-bar.on{transform:none;opacity:1}
+.cookie-bar b{display:block;color:#fff;font-weight:700;margin-bottom:6px;font-size:15.5px}
+.cookie-bar a{color:#7FA9CF}
+.cookie-bar .ck-a{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.cookie-bar button{font:700 14px var(--mont);border-radius:999px;padding:11px 20px;cursor:pointer;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff}
+.cookie-bar button.ok{background:#FF3D8B;border-color:#FF3D8B}
+.cookie-bar button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (max-width:520px){.cookie-bar{left:10px;right:10px;bottom:10px;padding:18px}.cookie-bar button{flex:1}}
 .fold>.cta{width:auto;align-self:stretch;margin-left:var(--pad);margin-right:var(--pad)}@media (max-width:760px){.fold>.cta{margin-left:12px;margin-right:12px}}
-.ck button.ok{color:#1A0610}
+.cookie-bar button.ok{color:#1A0610}
 /* cursor da digitação sem largura: não muda as quebras de linha (sem "pulos" no texto) */
 .tw .caret{display:inline;position:relative;width:0;height:auto;margin:0;padding:0;background:none;vertical-align:baseline;animation:none}
 .tw .caret::after{content:"";position:absolute;left:0;bottom:-.06em;width:.07em;height:.92em;background:#7FA9CF;border-radius:2px;animation:caret 1s steps(1) infinite}
@@ -790,3 +790,7 @@ html.lenis,html.lenis body{height:auto}
   .site.tech .frame,.site.tech:nth-child(even) .frame{order:0;margin:12px 12px 0}
   .site.tech .in{padding:22px 22px 26px}
 }
+
+/* quadriculado do logo ao lado da foto (Quem somos) */
+.photo .ck{display:block;opacity:1;z-index:1;width:40px;background:conic-gradient(#fff 25%,#2A2E35 0 50%,#fff 0 75%,#2A2E35 0);background-size:40px 40px;border-right:1px solid rgba(255,255,255,.08)}
+@media (max-width:760px){.photo .ck{width:26px;background-size:26px 26px}}
