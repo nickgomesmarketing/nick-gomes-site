@@ -539,3 +539,4 @@ a.cc.wa .k{color:#fff}
 /* projetos: título centralizado em verde; frase do bloco de dados em branco */
 .noar>.h{color:var(--ink);text-align:center;margin:0 auto clamp(28px,3.4vw,44px)}
 .dados>.h{color:#fff}
+#projetos,#depoimentos{scroll-margin-top:100px}

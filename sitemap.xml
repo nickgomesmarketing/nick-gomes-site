@@ -2,31 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.nickgomes.com/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-19</lastmod>
     <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-lazer-combat-rush.webp</image:loc></image:image>
     <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-imoveis-guilherme-azevedo.webp</image:loc></image:image>
     <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-servicos-perform.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.nickgomes.com/quem-somos/</loc>
-    <lastmod>2026-11-16</lastmod>
-  </url>
-  <url>
-    <loc>https://www.nickgomes.com/projetos/</loc>
-    <lastmod>2026-11-16</lastmod>
-    <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-lazer-combat-rush.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-imoveis-guilherme-azevedo.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.nickgomes.com/assets/img/projeto-servicos-perform.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.nickgomes.com/assets/img/referencia-condominios.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.nickgomes.com/assets/img/referencia-contabilidade.webp</image:loc></image:image>
-    <image:image><image:loc>https://www.nickgomes.com/assets/img/referencia-advocacia.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://www.nickgomes.com/depoimentos/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-19</lastmod>
   </url>
   <url>
     <loc>https://www.nickgomes.com/contato/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-19</lastmod>
   </url>
 </urlset>
