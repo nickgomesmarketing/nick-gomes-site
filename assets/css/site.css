@@ -766,3 +766,27 @@ html.lenis,html.lenis body{height:auto}
 /* última lâmina (a pergunta) sobe logo: sem pausa antes e sem espaço vazio em cima */
 .js .fold:last-child{margin-top:0;min-height:0;justify-content:flex-start}
 .noar>.h{font-size:clamp(36px,5.4vw,78px);line-height:1.04;letter-spacing:-.035em;max-width:16em}
+
+/* projetos em destaque: cada trabalho ocupa a largura toda, com a tela do site grande */
+.fold#projetos .panel{padding-left:clamp(8px,2vw,24px);padding-right:clamp(8px,2vw,24px)}
+.noar>.g3{grid-template-columns:1fr;gap:clamp(22px,2.6vw,36px);max-width:none}
+.site.tech{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);align-items:center;border-radius:30px}
+.site.tech::after{border-radius:28.5px}
+.site.tech .frame{margin:clamp(14px,1.6vw,22px);margin-right:0;border-radius:18px}
+.site.tech .bbar{padding:12px 16px}
+.site.tech .bbar .url{font-size:13px;padding:7px 14px}
+.site.tech .in{padding:clamp(26px,3vw,48px) clamp(26px,3.4vw,56px)}
+.site.tech .m{font-size:14px}
+.site.tech h3{font-size:clamp(32px,3.4vw,52px);margin-top:10px;letter-spacing:-.03em}
+.site.tech .tx{margin-top:20px;gap:12px}
+.site.tech .chip{font-size:12px;padding:8px 14px}
+.site.tech .tx .ft{font-size:clamp(18px,1.6vw,23px);line-height:1.4}
+.site.tech .go{margin-top:26px;font-size:16px}
+.site.tech:hover{transform:translateY(-4px)}
+.site.tech:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.75fr)}
+.site.tech:nth-child(even) .frame{order:2;margin-left:0;margin-right:clamp(14px,1.6vw,22px)}
+@media (max-width:900px){
+  .site.tech,.site.tech:nth-child(even){grid-template-columns:1fr}
+  .site.tech .frame,.site.tech:nth-child(even) .frame{order:0;margin:12px 12px 0}
+  .site.tech .in{padding:22px 22px 26px}
+}
