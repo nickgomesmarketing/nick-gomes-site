@@ -794,3 +794,22 @@ html.lenis,html.lenis body{height:auto}
 /* quadriculado do logo ao lado da foto (Quem somos) */
 .photo .ck{display:block;opacity:1;z-index:1;width:40px;background:conic-gradient(#fff 25%,#2A2E35 0 50%,#fff 0 75%,#2A2E35 0);background-size:40px 40px;border-right:1px solid rgba(255,255,255,.08)}
 @media (max-width:760px){.photo .ck{width:26px;background-size:26px 26px}}
+
+/* lâminas mais próximas: sem pausa nem espaço vazio entre elas (a primeira dobra continua em tela cheia) */
+:root{--hold:0px}
+.js .fold:not(.fold-hero){min-height:0;justify-content:flex-start}
+.js .fold+.fold{margin-top:0}
+.fold:not(.fold-hero){padding:clamp(48px,6vw,84px) 0}
+
+/* Nossa missão maior */
+.fold-missao .step>h2.h{font-size:clamp(40px,5vw,72px);letter-spacing:-.03em}
+.fold-missao .step>p{font-size:clamp(20px,1.9vw,28px);line-height:1.45;max-width:30em;color:#C9D6DF;margin-top:14px}
+.fold-missao .step>p b{color:#fff}
+.fold-missao .g3{gap:clamp(16px,2vw,28px)}
+.fold-missao .card{padding:clamp(30px,3.2vw,48px);border-radius:26px;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end}
+.fold-missao .card h3{font-size:clamp(30px,2.8vw,42px);letter-spacing:-.02em}
+.fold-missao .card p{font-size:clamp(17px,1.4vw,20px);line-height:1.55;margin-top:12px;color:#C9D6DF}
+.fold-missao .card.hl{background:linear-gradient(160deg,rgba(255,61,139,.14),rgba(255,255,255,.03));outline:1.5px solid rgba(255,61,139,.55)}
+@media (max-width:760px){.fold-missao .card{min-height:0}}
+.rosa{color:#FF3D8B}
+.bio p b.rosa,.bio b.rosa{color:#FF3D8B}
